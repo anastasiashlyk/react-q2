@@ -1,5 +1,11 @@
+import "./index.css"
+
 function Loader() {
-  return <div className="loader">Loading...</div>;
+  return (
+    <div className="loader-wrapper">
+      <div className="loader" />
+    </div>
+  );
 }
 
 export default Loader;
