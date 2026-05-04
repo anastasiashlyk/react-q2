@@ -1,15 +1,20 @@
 import type { CardInfo, PokemonListResponse, PokemonDetailsResponse } from "../types/pokeapi_types";
 
-export async function getPokemonList (limit: number, offset: number) : Promise<CardInfo[]>{
+export async function getPokemonList (limit: number, offset: number) : Promise<{items:CardInfo[]; total: number}>{
   const aux = await fetchJson<PokemonListResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
-  const results: CardInfo[] = await Promise.all(aux.results.map(item => getPokemonByName(item.name)));
-  return results;
+  const results: CardInfo[] = await Promise.all(aux.results.map(item => getPokemonByNameAux(item.name)));
+  return {items: results, total: aux.count};
 }
 
 
-export async function getPokemonByName (name : string) : Promise<CardInfo>{
+async function getPokemonByNameAux (name : string) : Promise<CardInfo>{
   const pokemon: PokemonDetailsResponse = await fetchJson<PokemonDetailsResponse>(`https://pokeapi.co/api/v2/pokemon/${name}`);
   return toCard(pokemon);
+}
+
+export async function getPokemonByName (name: string): Promise<{items:CardInfo[]; total: number}>{
+  const data = await getPokemonByNameAux(name);
+  return {items: [data], total: 1}
 }
 
 async function fetchJson<T>(url: string) : Promise<T>{
