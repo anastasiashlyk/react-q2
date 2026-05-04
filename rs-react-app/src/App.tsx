@@ -58,10 +58,7 @@ class App extends React.Component<object, State> {
     return (
       <div>
         <SearchBar initialTerm={this.state.searchTerm} onSearch={this.handleSearch}></SearchBar>
-        <CardsList></CardsList>
-        {this.state.results.map(item => (
-          <li key={item.id}>{item.name}</li>
-        ))}
+        <CardsList results={this.state.results} isLoading={this.state.isLoading} error={this.state.error}></CardsList>
 
       </div>
 
