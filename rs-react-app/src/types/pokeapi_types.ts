@@ -1,14 +1,14 @@
 type Pokemon = {
   name: string;
   url: string;
-}
+};
 
 export type PokemonListResponse = {
   count: number;
   next: string | null;
   previous: string | null;
   results: Array<Pokemon>;
-}
+};
 
 export type PokemonDetailsResponse = {
   id: number;
@@ -18,7 +18,7 @@ export type PokemonDetailsResponse = {
   sprites: {
     front_default: string;
   };
-}
+};
 
 export type CardInfo = {
   id: number;
@@ -26,4 +26,4 @@ export type CardInfo = {
   height: number;
   weight: number;
   image: string;
-}
+};
