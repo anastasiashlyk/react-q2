@@ -8,14 +8,15 @@ export async function getPokemonList (limit: number, offset: number) : Promise<C
 
 
 export async function getPokemonByName (name : string) : Promise<CardInfo>{
-  const pokemon: PokemonDetailsResponse = await fetchJson<PokemonDetailsResponse>(`https://pokeapi.co/api/v2/${name}`);
+  const pokemon: PokemonDetailsResponse = await fetchJson<PokemonDetailsResponse>(`https://pokeapi.co/api/v2/pokemon/${name}`);
   return toCard(pokemon);
 }
 
 async function fetchJson<T>(url: string) : Promise<T>{
+  console.log('Fetching:', url);
     const response = await fetch(url);
     if(!response.ok){
-      throw new Error(`${response.status} ${response.statusText}`);
+      throw new Error(`Ooops fallo`);
     }
     return await response.json();
 }
