@@ -3,6 +3,7 @@ import React from 'react'
 import SearchBar from './components/SearchBar/SearchBar'
 import CardsList from './components/CardsList/CardsList'
 import Pagination from './components/Pagination/Pagination'
+import ErrorButton from './components/ErrorButton/ErrorButton'
 
 import { CardInfo } from './types/pokeapi_types'
 import {getPokemonByName, getPokemonList} from './api/requests'
@@ -73,6 +74,7 @@ class App extends React.Component<object, State> {
           totalPages={Math.ceil(this.state.total / PAGE_SIZE)}
           onPageChange={this.handlePageChange}
         />
+        <ErrorButton>Throw Error</ErrorButton>
       </div>
 
     )
