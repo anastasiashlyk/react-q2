@@ -49,7 +49,7 @@ class App extends React.Component<object, State> {
       this.setState({
         results: [],
         isLoading: false,
-        error: `Could not load data: ${message}`,
+        error: message,
       });
     }
   };
