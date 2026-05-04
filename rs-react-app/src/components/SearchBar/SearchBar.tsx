@@ -1,5 +1,6 @@
 import React from "react";
 import { ChangeEvent, FormEvent } from 'react';
+import "./index.css"
 
 interface Props {
   initialTerm: string,
@@ -28,7 +29,10 @@ class SearchBar extends React.Component<Props, State>{
   render(){
     return (
       <form className="search" onSubmit={this.handleSubmit}>
-        <input value={this.state.value} onChange={this.handleChange}/>
+        <input 
+        value={this.state.value} 
+        onChange={this.handleChange}
+        placeholder="Search Pokémon by name..."/>
         <button type="submit">Search</button>
       </form>
     )
