@@ -15,7 +15,9 @@ describe('ErrorButton', () => {
         <ErrorButton />
       </ErrorBoundary>
     );
-    expect(screen.getByRole('button', { name: /throw error/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /throw error/i })
+    ).toBeInTheDocument();
   });
 
   it('triggers ErrorBoundary fallback when the button is clicked', async () => {
