@@ -1,5 +1,5 @@
-import { Component, ErrorInfo, ReactNode } from "react";
-import "./index.css";
+import { Component, ErrorInfo, ReactNode } from 'react';
+import './index.css';
 
 interface Props {
   children: ReactNode;
@@ -13,7 +13,7 @@ interface State {
 class ErrorBoundary extends Component<Props, State> {
   state: State = {
     hasError: false,
-    errorMsg: "",
+    errorMsg: '',
   };
 
   static getDerivedStateFromError(error: Error): State {
@@ -21,11 +21,11 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    console.error("ErrorBoundary caught:", error, errorInfo);
+    console.error('ErrorBoundary caught:', error, errorInfo);
   }
 
   handleReset = (): void => {
-    this.setState({ hasError: false, errorMsg: "" });
+    this.setState({ hasError: false, errorMsg: '' });
   };
 
   render() {

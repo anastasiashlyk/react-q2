@@ -1,6 +1,6 @@
-import React from "react";
-import { CardInfo } from "../../types/pokeapi_types";
-import "./index.css";
+import React from 'react';
+import { CardInfo } from '../../types/pokeapi_types';
+import './index.css';
 
 type CardProps = {
   info: CardInfo;

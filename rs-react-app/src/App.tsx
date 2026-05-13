@@ -1,14 +1,14 @@
-import "./App.css";
-import React from "react";
-import SearchBar from "./components/SearchBar/SearchBar";
-import CardsList from "./components/CardsList/CardsList";
-import Pagination from "./components/Pagination/Pagination";
-import ErrorButton from "./components/ErrorButton/ErrorButton";
+import './App.css';
+import React from 'react';
+import SearchBar from './components/SearchBar/SearchBar';
+import CardsList from './components/CardsList/CardsList';
+import Pagination from './components/Pagination/Pagination';
+import ErrorButton from './components/ErrorButton/ErrorButton';
 
-import { CardInfo } from "./types/pokeapi_types";
-import { getPokemonByName, getPokemonList } from "./api/requests";
+import { CardInfo } from './types/pokeapi_types';
+import { getPokemonByName, getPokemonList } from './api/requests';
 
-import { SEARCH_KEY, PAGE_SIZE } from "./constants/consts";
+import { SEARCH_KEY, PAGE_SIZE } from './constants/consts';
 
 interface State {
   results: CardInfo[];
@@ -22,7 +22,7 @@ interface State {
 class App extends React.Component<object, State> {
   state: State = {
     results: [],
-    searchTerm: localStorage.getItem(SEARCH_KEY) ?? "",
+    searchTerm: localStorage.getItem(SEARCH_KEY) ?? '',
     isLoading: false,
     error: null,
     page: 1,
@@ -45,7 +45,7 @@ class App extends React.Component<object, State> {
         total: data.total,
       });
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Unknown error";
+      const message = err instanceof Error ? err.message : 'Unknown error';
       this.setState({
         results: [],
         isLoading: false,
