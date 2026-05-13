@@ -10,6 +10,8 @@ describe('Loader', () => {
 
   it('renders loader element inside wrapper', () => {
     const { container } = render(<Loader />);
-    expect(container.querySelector('.loader-wrapper .loader')).toBeInTheDocument();
+    expect(
+      container.querySelector('.loader-wrapper .loader')
+    ).toBeInTheDocument();
   });
 });
