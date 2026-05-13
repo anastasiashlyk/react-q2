@@ -1,0 +1,16 @@
+.error-button {
+  margin: 24px auto;
+  display: block;
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px dashed #ef4444;
+  color: #ef4444;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 14px;
+}
+
+.error-button:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
