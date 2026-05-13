@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { CardInfo } from "../../types/pokeapi_types";
-import Card from "./Card";
-import Loader from "../Loader/Loader";
+import { CardInfo } from '../../types/pokeapi_types';
+import Card from './Card';
+import Loader from '../Loader/Loader';
 
 interface Props {
   results: CardInfo[];

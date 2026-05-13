@@ -2,17 +2,17 @@ import type {
   CardInfo,
   PokemonListResponse,
   PokemonDetailsResponse,
-} from "../types/pokeapi_types";
+} from '../types/pokeapi_types';
 
 export async function getPokemonList(
   limit: number,
-  offset: number,
+  offset: number
 ): Promise<{ items: CardInfo[]; total: number }> {
   const aux = await fetchJson<PokemonListResponse>(
-    `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`,
+    `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
   );
   const results: CardInfo[] = await Promise.all(
-    aux.results.map((item) => getPokemonByNameAux(item.name)),
+    aux.results.map((item) => getPokemonByNameAux(item.name))
   );
   return { items: results, total: aux.count };
 }
@@ -20,13 +20,13 @@ export async function getPokemonList(
 async function getPokemonByNameAux(name: string): Promise<CardInfo> {
   const pokemon: PokemonDetailsResponse =
     await fetchJson<PokemonDetailsResponse>(
-      `https://pokeapi.co/api/v2/pokemon/${name}`,
+      `https://pokeapi.co/api/v2/pokemon/${name}`
     );
   return toCard(pokemon);
 }
 
 export async function getPokemonByName(
-  name: string,
+  name: string
 ): Promise<{ items: CardInfo[]; total: number }> {
   const data = await getPokemonByNameAux(name);
   return { items: [data], total: 1 };

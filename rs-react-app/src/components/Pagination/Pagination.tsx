@@ -1,6 +1,6 @@
-import React from "react";
-import "./index.css";
-import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
+import React from 'react';
+import './index.css';
+import { GrFormNextLink, GrFormPreviousLink } from 'react-icons/gr';
 
 interface Props {
   page: number;

@@ -1,6 +1,6 @@
-import React from "react";
-import { ChangeEvent, FormEvent } from "react";
-import "./index.css";
+import React from 'react';
+import { ChangeEvent, FormEvent } from 'react';
+import './index.css';
 
 interface Props {
   initialTerm: string;
