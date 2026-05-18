@@ -9,6 +9,7 @@
   background: var(--code-bg);
   min-height: 100%;
   box-sizing: border-box;
+  border-radius: 20px;
 }
 
 .details-close {

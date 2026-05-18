@@ -3,7 +3,7 @@ import { getPokemonByName } from '../../api/requests';
 import { useState, useEffect } from 'react';
 import type { CardInfo } from '../../types/pokeapi_types';
 import Loader from '../Loader/Loader';
-import './Details.css';
+import './index.css';
 
 function Details() {
   const { name } = useParams<{ name: string }>();
@@ -39,7 +39,7 @@ function Details() {
   return (
     <div className="details">
       <button className="details-close" onClick={handleClose}>
-        ✕ Close
+        ✕
       </button>
       <img className="details-image" src={data?.image} alt={data?.name} />
       <h3 className="details-name">{data?.name}</h3>
