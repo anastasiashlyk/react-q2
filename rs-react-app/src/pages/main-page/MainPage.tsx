@@ -14,11 +14,10 @@ import './index.css';
 function MainPage() {
   const [searchTerm, setSearchTerm] = useLocalStorage<string>(SEARCH_KEY, '');
   const [searchParams, setSearchParams] = useSearchParams();
-
   // const [page, setPage] = useState(1);
   const { results, total, isLoading, error } = usePokemon(
     searchTerm,
-    Number(searchParams.get('page'))
+    Number(searchParams.get('page') || 1)
   );
 
   function handleSearch(term: string) {
