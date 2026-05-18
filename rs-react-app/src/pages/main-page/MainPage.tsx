@@ -1,14 +1,15 @@
-import { useState } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import CardsList from '../../components/CardsList/CardsList';
 import Pagination from '../../components/Pagination/Pagination';
 import ErrorButton from '../../components/ErrorButton/ErrorButton';
-import { useSearchParams } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 
 import { SEARCH_KEY, PAGE_SIZE } from '../../constants/consts';
 
 import useLocalStorage from '../../hooks/useLocalStorage.ts';
 import usePokemon from '../../hooks/usePokemon.ts';
+
+import './index.css';
 
 function MainPage() {
   const [searchTerm, setSearchTerm] = useLocalStorage<string>(SEARCH_KEY, '');
@@ -40,11 +41,16 @@ function MainPage() {
   return (
     <div>
       <SearchBar initialTerm={searchTerm} onSearch={handleSearch}></SearchBar>
-      <CardsList
-        results={results}
-        isLoading={isLoading}
-        error={error}
-      ></CardsList>
+      <div className="content">
+        <CardsList
+          results={results}
+          isLoading={isLoading}
+          error={error}
+          currentPage={Number(searchParams.get('page'))}
+        ></CardsList>
+        <Outlet />
+      </div>
+
       <Pagination
         page={Number(searchParams.get('page'))}
         totalPages={Math.ceil(total / PAGE_SIZE)}
