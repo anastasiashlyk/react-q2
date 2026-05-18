@@ -18,30 +18,58 @@ describe('CardsList', () => {
 
   it('renders error message when error prop is set', () => {
     render(
-      <CardsList results={[]} isLoading={false} error="Something went wrong" currentPage={1} />
+      <CardsList
+        results={[]}
+        isLoading={false}
+        error="Something went wrong"
+        currentPage={1}
+      />
     );
     expect(screen.getByText('Something went wrong')).toBeInTheDocument();
   });
 
   it('renders "No matches" when results are empty and not loading', () => {
-    render(<CardsList results={[]} isLoading={false} error={null} currentPage={1} />);
+    render(
+      <CardsList results={[]} isLoading={false} error={null} currentPage={1} />
+    );
     expect(screen.getByText('No matches')).toBeInTheDocument();
   });
 
   it('renders the correct number of card items', () => {
-    renderWithRouter(<CardsList results={MOCK_CARDS} isLoading={false} error={null} currentPage={1} />);
+    renderWithRouter(
+      <CardsList
+        results={MOCK_CARDS}
+        isLoading={false}
+        error={null}
+        currentPage={1}
+      />
+    );
     const items = screen.getAllByRole('listitem');
     expect(items).toHaveLength(MOCK_CARDS.length);
   });
 
   it('renders each Pokemon name from results', () => {
-    renderWithRouter(<CardsList results={MOCK_CARDS} isLoading={false} error={null} currentPage={1} />);
+    renderWithRouter(
+      <CardsList
+        results={MOCK_CARDS}
+        isLoading={false}
+        error={null}
+        currentPage={1}
+      />
+    );
     expect(screen.getByText(/Name: bulbasaur/i)).toBeInTheDocument();
     expect(screen.getByText(/Name: charmander/i)).toBeInTheDocument();
   });
 
   it('does not render list when loading, even if results are provided', () => {
-    render(<CardsList results={MOCK_CARDS} isLoading={true} error={null} currentPage={1} />);
+    render(
+      <CardsList
+        results={MOCK_CARDS}
+        isLoading={true}
+        error={null}
+        currentPage={1}
+      />
+    );
     expect(screen.queryByRole('list')).not.toBeInTheDocument();
   });
 });

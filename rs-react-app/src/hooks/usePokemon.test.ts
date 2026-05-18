@@ -1,7 +1,10 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import usePokemon from './usePokemon';
-import { MOCK_LIST_RESPONSE, MOCK_SINGLE_RESPONSE } from '../test-utils/mockData';
+import {
+  MOCK_LIST_RESPONSE,
+  MOCK_SINGLE_RESPONSE,
+} from '../test-utils/mockData';
 
 vi.mock('../api/requests');
 
