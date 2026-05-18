@@ -3,6 +3,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import CardsList from '../../components/CardsList/CardsList';
 import Pagination from '../../components/Pagination/Pagination';
 import ErrorButton from '../../components/ErrorButton/ErrorButton';
+import { useSearchParams } from 'react-router-dom';
 
 import { SEARCH_KEY, PAGE_SIZE } from '../../constants/consts';
 
@@ -11,18 +12,29 @@ import usePokemon from '../../hooks/usePokemon.ts';
 
 function MainPage() {
   const [searchTerm, setSearchTerm] = useLocalStorage<string>(SEARCH_KEY, '');
-  const [page, setPage] = useState(1);
-  const { results, total, isLoading, error } = usePokemon(searchTerm, page);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // const [page, setPage] = useState(1);
+  const { results, total, isLoading, error } = usePokemon(
+    searchTerm,
+    Number(searchParams.get('page'))
+  );
 
   function handleSearch(term: string) {
     if (term !== searchTerm) {
       setSearchTerm(term);
-      setPage(1);
+      setSearchParams((prev) => {
+        prev.set('page', '1');
+        return prev;
+      });
     }
   }
 
   function handlePageChange(newPage: number) {
-    setPage(newPage);
+    setSearchParams((prev) => {
+      prev.set('page', String(newPage));
+      return prev;
+    });
   }
 
   return (
@@ -34,7 +46,7 @@ function MainPage() {
         error={error}
       ></CardsList>
       <Pagination
-        page={page}
+        page={Number(searchParams.get('page'))}
         totalPages={Math.ceil(total / PAGE_SIZE)}
         onPageChange={handlePageChange}
       />
