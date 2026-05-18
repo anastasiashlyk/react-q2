@@ -42,12 +42,14 @@ function MainPage() {
     <div>
       <SearchBar initialTerm={searchTerm} onSearch={handleSearch}></SearchBar>
       <div className="content">
-        <CardsList
-          results={results}
-          isLoading={isLoading}
-          error={error}
-          currentPage={Number(searchParams.get('page'))}
-        ></CardsList>
+        <div className="content-list">
+          <CardsList
+            results={results}
+            isLoading={isLoading}
+            error={error}
+            currentPage={Number(searchParams.get('page'))}
+          ></CardsList>
+        </div>
         <Outlet />
       </div>
 
