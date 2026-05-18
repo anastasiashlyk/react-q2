@@ -38,7 +38,7 @@ function usePokemon(searchTerm: string, page: number): UsePokemonResult {
     loadData(searchTerm, page);
   }, [searchTerm, page]);
 
-  return {results, total, isLoading, error};
+  return { results, total, isLoading, error };
 }
 
 export default usePokemon;
