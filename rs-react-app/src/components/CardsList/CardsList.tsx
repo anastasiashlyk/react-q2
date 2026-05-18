@@ -6,6 +6,7 @@ interface Props {
   results: CardInfo[];
   isLoading: boolean;
   error: string | null;
+  currentPage: number;
 }
 
 function CardsList(props: Props) {
@@ -18,7 +19,7 @@ function CardsList(props: Props) {
     <ul className="cardList">
       {props.results.map((item) => (
         <li key={item.id}>
-          <Card info={item}></Card>
+          <Card info={item} currentPage={props.currentPage}></Card>
         </li>
       ))}
     </ul>
