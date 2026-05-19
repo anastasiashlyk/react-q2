@@ -57,7 +57,7 @@ function MainPage() {
         totalPages={Math.ceil(total / PAGE_SIZE)}
         onPageChange={handlePageChange}
       />
-      <ErrorButton>Throw Error</ErrorButton>
+      <ErrorButton></ErrorButton>
     </div>
   );
 }
