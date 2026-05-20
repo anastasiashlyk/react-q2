@@ -7,7 +7,7 @@ import type {
 export async function getPokemonList(
   limit: number,
   offset: number,
-  signal: AbortSignal
+  signal?: AbortSignal
 ): Promise<{ items: CardInfo[]; total: number }> {
   const listResponse = await fetchJson<PokemonListResponse>(
     `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`,
@@ -21,7 +21,7 @@ export async function getPokemonList(
 
 async function getPokemonByNameAux(
   name: string,
-  signal: AbortSignal
+  signal?: AbortSignal
 ): Promise<CardInfo> {
   const pokemon: PokemonDetailsResponse =
     await fetchJson<PokemonDetailsResponse>(
@@ -33,13 +33,13 @@ async function getPokemonByNameAux(
 
 export async function getPokemonByName(
   name: string,
-  signal: AbortSignal
+  signal?: AbortSignal
 ): Promise<{ items: CardInfo[]; total: number }> {
   const data = await getPokemonByNameAux(name, signal);
   return { items: [data], total: 1 };
 }
 
-async function fetchJson<T>(url: string, signal: AbortSignal): Promise<T> {
+async function fetchJson<T>(url: string, signal?: AbortSignal): Promise<T> {
   console.log('Fetching:', url);
   const response = await fetch(url, { signal });
 

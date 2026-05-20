@@ -13,7 +13,7 @@ interface UsePokemonResult {
 function usePokemon(searchTerm: string, page: number): UsePokemonResult {
   const [results, setResults] = useState<CardInfo[]>([]);
   const [total, setTotal] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
