@@ -25,7 +25,11 @@ function usePokemon(searchTerm: string, page: number): UsePokemonResult {
       try {
         const data = term
           ? await getPokemonByName(term, controller.signal)
-          : await getPokemonList(PAGE_SIZE, (page - 1) * PAGE_SIZE, controller.signal);
+          : await getPokemonList(
+              PAGE_SIZE,
+              (page - 1) * PAGE_SIZE,
+              controller.signal
+            );
         setResults(data.items);
         setIsLoading(false);
         setTotal(data.total);
