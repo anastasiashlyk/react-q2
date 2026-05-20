@@ -17,17 +17,22 @@ function usePokemon(searchTerm: string, page: number): UsePokemonResult {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     async function loadData(term: string, page: number) {
       setIsLoading(true);
       setError(null);
       try {
         const data = term
-          ? await getPokemonByName(term)
-          : await getPokemonList(PAGE_SIZE, (page - 1) * PAGE_SIZE);
+          ? await getPokemonByName(term, controller.signal)
+          : await getPokemonList(PAGE_SIZE, (page - 1) * PAGE_SIZE, controller.signal);
         setResults(data.items);
         setIsLoading(false);
         setTotal(data.total);
       } catch (err) {
+        if (err instanceof DOMException && err.name === 'AbortError') {
+          return;
+        }
         const message = err instanceof Error ? err.message : 'Unknown error';
 
         setResults([]);
@@ -36,6 +41,10 @@ function usePokemon(searchTerm: string, page: number): UsePokemonResult {
       }
     }
     loadData(searchTerm, page);
+
+    return () => {
+      controller.abort();
+    };
   }, [searchTerm, page]);
 
   return { results, total, isLoading, error };
