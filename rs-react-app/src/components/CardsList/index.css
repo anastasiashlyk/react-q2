@@ -16,6 +16,7 @@
 }
 
 .card:hover {
+  cursor: pointer;
   transform: translateY(-4px);
   border-color: var(--accent-border);
   box-shadow:

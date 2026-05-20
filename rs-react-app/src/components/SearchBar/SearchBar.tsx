@@ -1,5 +1,4 @@
-import React from 'react';
-import { ChangeEvent, FormEvent } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import './index.css';
 
 interface Props {
@@ -7,36 +6,29 @@ interface Props {
   onSearch: (term: string) => void;
 }
 
-interface State {
-  value: string;
-}
+function SearchBar(props: Props) {
+  const [value, setValue] = useState(props.initialTerm);
 
-class SearchBar extends React.Component<Props, State> {
-  state: State = {
-    value: this.props.initialTerm,
-  };
-
-  handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    this.setState({ value: e.target.value });
-  };
-
-  handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const msg = this.state.value.trim();
-    this.props.onSearch(msg);
-  };
-  render() {
-    return (
-      <form className="search" onSubmit={this.handleSubmit}>
-        <input
-          value={this.state.value}
-          onChange={this.handleChange}
-          placeholder="Search Pokémon by name..."
-        />
-        <button type="submit">Search</button>
-      </form>
-    );
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setValue(e.target.value);
   }
+
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const msg = value.trim();
+    props.onSearch(msg);
+  }
+
+  return (
+    <form className="search" onSubmit={handleSubmit}>
+      <input
+        value={value}
+        onChange={handleChange}
+        placeholder="Search Pokémon by name..."
+      />
+      <button type="submit">Search</button>
+    </form>
+  );
 }
 
 export default SearchBar;

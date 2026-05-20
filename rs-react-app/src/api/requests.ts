@@ -6,35 +6,42 @@ import type {
 
 export async function getPokemonList(
   limit: number,
-  offset: number
+  offset: number,
+  signal?: AbortSignal
 ): Promise<{ items: CardInfo[]; total: number }> {
-  const aux = await fetchJson<PokemonListResponse>(
-    `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+  const listResponse = await fetchJson<PokemonListResponse>(
+    `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`,
+    signal
   );
   const results: CardInfo[] = await Promise.all(
-    aux.results.map((item) => getPokemonByNameAux(item.name))
+    listResponse.results.map((item) => getPokemonByNameAux(item.name, signal))
   );
-  return { items: results, total: aux.count };
+  return { items: results, total: listResponse.count };
 }
 
-async function getPokemonByNameAux(name: string): Promise<CardInfo> {
+async function getPokemonByNameAux(
+  name: string,
+  signal?: AbortSignal
+): Promise<CardInfo> {
   const pokemon: PokemonDetailsResponse =
     await fetchJson<PokemonDetailsResponse>(
-      `https://pokeapi.co/api/v2/pokemon/${name}`
+      `https://pokeapi.co/api/v2/pokemon/${name}`,
+      signal
     );
   return toCard(pokemon);
 }
 
 export async function getPokemonByName(
-  name: string
+  name: string,
+  signal?: AbortSignal
 ): Promise<{ items: CardInfo[]; total: number }> {
-  const data = await getPokemonByNameAux(name);
+  const data = await getPokemonByNameAux(name, signal);
   return { items: [data], total: 1 };
 }
 
-async function fetchJson<T>(url: string): Promise<T> {
+async function fetchJson<T>(url: string, signal?: AbortSignal): Promise<T> {
   console.log('Fetching:', url);
-  const response = await fetch(url);
+  const response = await fetch(url, { signal });
 
   if (!response.ok) {
     let message: string;
