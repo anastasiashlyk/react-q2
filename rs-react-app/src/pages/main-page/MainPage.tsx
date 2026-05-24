@@ -3,7 +3,7 @@ import CardsList from '../../components/CardsList/CardsList';
 import Pagination from '../../components/Pagination/Pagination';
 import ErrorButton from '../../components/ErrorButton/ErrorButton';
 import Flyout from '../../components/Flyout/Flyout';
-import { Link, Outlet, useSearchParams } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 
 import { SEARCH_KEY, PAGE_SIZE } from '../../constants/consts';
 
@@ -40,9 +40,6 @@ function MainPage() {
 
   return (
     <div>
-      <Link to="/about">
-        <button>About</button>
-      </Link>
       <SearchBar initialTerm={searchTerm} onSearch={handleSearch}></SearchBar>
       <div className="content">
         <div className="content-list">

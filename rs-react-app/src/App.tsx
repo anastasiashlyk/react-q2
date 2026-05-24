@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import MainPage from './pages/main-page/MainPage';
 import AboutPage from './pages/about-page/AboutPage';
 import NotFoundPage from './pages/not-found-page/NotFoundPage';
@@ -12,6 +12,10 @@ function App() {
   return (
     <>
       <header className="app-header">
+        <nav className="app-nav">
+          <NavLink to="/" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Home</NavLink>
+          <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>About</NavLink>
+        </nav>
         <button onClick={toggle}>
           {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
         </button>
