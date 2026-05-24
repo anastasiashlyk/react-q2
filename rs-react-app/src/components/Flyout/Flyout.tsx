@@ -26,7 +26,9 @@ function Flyout() {
 
   return (
     <div className="flyout">
-      <span className="flyout-count">{selectedItems.length} item(s) selected</span>
+      <span className="flyout-count">
+        {selectedItems.length} item(s) selected
+      </span>
       <div className="flyout-actions">
         <button onClick={() => dispatch(clearAll())}>Unselect all</button>
         <button onClick={handleDownload}>Download</button>
