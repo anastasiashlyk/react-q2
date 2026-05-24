@@ -1,12 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect } from 'vitest';
 import CardsList from './CardsList';
 import { MOCK_CARDS } from '../../test-utils/mockData';
-
-function renderWithRouter(ui: React.ReactElement) {
-  return render(<MemoryRouter>{ui}</MemoryRouter>);
-}
+import { renderWithProviders } from '../../test-utils/renderWithProviders';
 
 describe('CardsList', () => {
   it('renders Loader when isLoading is true', () => {
@@ -36,7 +32,7 @@ describe('CardsList', () => {
   });
 
   it('renders the correct number of card items', () => {
-    renderWithRouter(
+    renderWithProviders(
       <CardsList
         results={MOCK_CARDS}
         isLoading={false}
@@ -49,7 +45,7 @@ describe('CardsList', () => {
   });
 
   it('renders each Pokemon name from results', () => {
-    renderWithRouter(
+    renderWithProviders(
       <CardsList
         results={MOCK_CARDS}
         isLoading={false}

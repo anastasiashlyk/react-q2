@@ -2,6 +2,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import CardsList from '../../components/CardsList/CardsList';
 import Pagination from '../../components/Pagination/Pagination';
 import ErrorButton from '../../components/ErrorButton/ErrorButton';
+import Flyout from '../../components/Flyout/Flyout';
 import { Outlet, useSearchParams } from 'react-router-dom';
 
 import { SEARCH_KEY, PAGE_SIZE } from '../../constants/consts';
@@ -58,6 +59,7 @@ function MainPage() {
         onPageChange={handlePageChange}
       />
       <ErrorButton></ErrorButton>
+      <Flyout />
     </div>
   );
 }
