@@ -17,7 +17,9 @@
   font-size: 15px;
   color: var(--text);
   text-decoration: none;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 .nav-link:hover {
